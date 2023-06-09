@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
   View,
@@ -11,110 +11,40 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import 'react-native-gesture-handler';
-import AppNavigator from './AppNavigator';
+import { Home } from './screens/home';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Screens } from './utilities';
+import Earth from './screens/Earth';
+import Moon from './screens/Moon';
+import Mars from './screens/Mars';
+import Sun from './screens/Sun';
+import Saturn from './screens/Saturn';
+import Uranus from './screens/Uranus';
+import Mercury from './screens/Mercury';
+import Neptune from './screens/Neptune';
+import TON618 from './screens/TON618';
+import MuchMore from './screens/MuchMore';
 
-interface Item {
-  id: string;
-  image: any;
-}
+const Stack = createNativeStackNavigator();
 
-const data: Item[] = [
-  { id: '1', image: require('./assets/images/earth.png') },
-  { id: '2', image: require('./assets/images/moon.png') },
-  { id: '3', image: require('./assets/images/mars.png') },
-  { id: '4', image: require('./assets/images/sun.png') },
-  { id: '5', image: require('./assets/images/saturn.png') },
-  { id: '6', image: require('./assets/images/uranus.png') },
-  { id: '7', image: require('./assets/images/mercury.png') },
-  { id: '8', image: require('/Users/larsdebruijn/CelestialExplorer/assets/images/neptune.png') },
-  { id: '9', image: require('/Users/larsdebruijn/CelestialExplorer/assets/images/ton618.png') },
-  { id: '10', image: require('/Users/larsdebruijn/CelestialExplorer/assets/images/astronaut.png') },
-];
-
-const screenWidth = Dimensions.get('window').width;
-
-const App = () => {
-  const navigation = useNavigation();
-
-  const handleImagePress = () => {
-    // Navigate to the desired screen
-    navigation.navigate('DetailsScreen'); // Replace 'DetailsScreen' with the actual screen name
-  };
-
+function App() {
   return (
-    <AppNavigator>
-      <View style={styles.background}>
-        <TextInput style={styles.searchBar} placeholder="What are you looking for?" />
-        <ScrollView contentContainerStyle={styles.container}>
-          {data.map((item) => (
-            <TouchableOpacity key={item.id} style={styles.itemContainer} onPress={handleImagePress}>
-              <Image source={item.image} style={styles.image} />
-              <Text style={styles.imageText}>
-                {item.id === '1'
-                  ? 'Earth'
-                  : item.id === '2'
-                  ? 'Moon'
-                  : item.id === '3'
-                  ? 'Mars'
-                  : item.id === '4'
-                  ? 'Sun'
-                  : item.id === '5'
-                  ? 'Saturn'
-                  : item.id === '6'
-                  ? 'Uranus'
-                  : item.id === '7'
-                  ? 'Mercury'
-                  : item.id === '8'
-                  ? 'Neptune'
-                  : item.id === '9'
-                  ? 'TON 618'
-                  : item.id === '10'
-                  ? 'and much more...'
-                  : ''}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
-    </AppNavigator>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen options={{headerShown: false}}  name={Screens.Home} component={Home} />
+        <Stack.Screen  name={Screens.Earth} component={Earth} />
+        <Stack.Screen  name={Screens.Moon} component={Moon} />
+        <Stack.Screen  name={Screens.Mars} component={Mars} />
+        <Stack.Screen  name={Screens.Sun} component={Sun} />
+        <Stack.Screen  name={Screens.Saturn} component={Saturn} />
+        <Stack.Screen  name={Screens.Uranus} component={Uranus} />
+        <Stack.Screen  name={Screens.Mercury} component={Mercury} />
+        <Stack.Screen  name={Screens.Neptune} component={Neptune} />
+        <Stack.Screen  name={Screens.TON618} component={TON618} />
+        <Stack.Screen  name={Screens.MuchMore} component={MuchMore} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
-
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    backgroundColor: '#171717',
-  },
-  searchBar: {
-    height: 40,
-    marginHorizontal: 16,
-    marginTop: 60,
-    marginBottom: 8,
-    padding: 8,
-    borderRadius: 8,
-    backgroundColor: 'white',
-  },
-  container: {
-    alignItems: 'center',
-    paddingTop: 16,
-    paddingBottom: 80, // Adjust bottom padding to prevent overlapping content
-  },
-  itemContainer: {
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  image: {
-    width: screenWidth / 2, // Adjust image width as needed
-    height: screenWidth / 2, // Adjust image height as needed
-    borderRadius: 8,
-  },
-  imageText: {
-    marginTop: 8,
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: 'white',
-  },
-});
+}
 
 export default App;

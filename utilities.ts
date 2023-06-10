@@ -1,17 +1,17 @@
 import {Dimensions} from "react-native";
 
 export enum Screens {
-    Home = "home",
-    Earth = "earth",
-    Moon = "moon",
-    Mars = "mars",
-    Sun = "sun",
-    Saturn = "saturn",
-    Uranus = "uranus",
-    Mercury = "mercury",
-    Neptune = "neptune",
-    TON618 = "ton618",
-    MuchMore = "astronaut"
+    Home = "Home",
+    Earth = "Earth",
+    Moon = "Moon",
+    Mars = "Mars",
+    Sun = "Sun",
+    Saturn = "Saturn",
+    Uranus = "Uranus",
+    Mercury = "Mercury",
+    Neptune = "Neptune",
+    TON618 = "Ton618",
+    MuchMore = "and much more..."
 }
 
 export interface Item {

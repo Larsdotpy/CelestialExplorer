@@ -5,11 +5,11 @@ import 'react-native-gesture-handler';
 import {data, Item, RootStackParamList, Screens} from '../utilities'
 import {StackNavigationProp} from "@react-navigation/stack";
 
-const home = require("../assets/images/mainlogo.png");
 const earth = require("../assets/images/earth.png");
+const moon = require("../assets/images/moon.png")
 const mars = require("../assets/images/mars.png");
 const mercury = require("../assets/images/mercury.png");
-const sun = require("../assets/images/earth.png");
+const sun = require("../assets/images/sun.png");
 const ton618 = require("../assets/images/ton618.png");
 const muchMore = require("../assets/images/astronaut.png");
 const saturn = require("../assets/images/saturn.png");
@@ -17,8 +17,8 @@ const neptune = require("../assets/images/neptune.png");
 const uranus = require("../assets/images/uranus.png");
 
 const images = {
-  [Screens.Home]: home,
   [Screens.Earth]: earth,
+  [Screens.Moon]: moon,
   [Screens.Mars]: mars,
   [Screens.Mercury]: mercury,
   [Screens.MuchMore]: muchMore,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   searchBar: {
     height: 40,
     marginHorizontal: 16,
-    marginTop: 60,
+    marginTop: 80,
     marginBottom: 8,
     padding: 8,
     borderRadius: 8,

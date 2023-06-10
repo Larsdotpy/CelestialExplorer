@@ -1,56 +1,58 @@
-import { Dimensions } from "react-native";
-import Moon from './screens/Moon';
-import Earth from './screens/Earth';
-import Mars from './screens/Mars';
-import Sun from './screens/Sun';
-import Saturn from './screens/Saturn';
-import Uranus from './screens/Uranus';
-import Mercury from './screens/Mercury';
-import Neptune from './screens/Neptune';
-import TON618 from './screens/TON618';
-import MuchMore from './screens/MuchMore';
+import {Dimensions} from "react-native";
 
-interface Item {
-  id: string;
-  image: any;
+export enum Screens {
+    Home = "home",
+    Earth = "earth",
+    Moon = "moon",
+    Mars = "mars",
+    Sun = "sun",
+    Saturn = "saturn",
+    Uranus = "uranus",
+    Mercury = "mercury",
+    Neptune = "neptune",
+    TON618 = "ton618",
+    MuchMore = "astronaut"
 }
 
-export const data: Item[] = [
-    { id: '1', image: require('./assets/images/earth.png') },
-    { id: '2', image: require('./assets/images/moon.png') },
-    { id: '3', image: require('./assets/images/mars.png') },
-    { id: '4', image: require('./assets/images/sun.png') },
-    { id: '5', image: require('./assets/images/saturn.png') },
-    { id: '6', image: require('./assets/images/uranus.png') },
-    { id: '7', image: require('./assets/images/mercury.png') },
-    { id: '8', image: require('./assets/images/neptune.png') },
-    { id: '9', image: require('./assets/images/ton618.png') },
-    { id: '10', image: require('./assets/images/astronaut.png') },
-  ];
-  
-  export const screenWidth = Dimensions.get('window').width;
-  export enum Screens{
-    Home = "Home",
-    Earth = "Earth",
-    Moon = "Moon",
-    Mars = "Mars",
-    Sun = "Sun", 
-    Saturn = "Saturn",
-    Uranus = "Uranus",
-    Mercury = "Mercury",
-    Neptune = "Neptune",
-    TON618 = "TON618",
-    MuchMore = "MuchMore"
-  }
+export interface Item {
+    id: Screens;
+    image: any;
+    title: string
+    subtitle?: string;
+}
 
-  export const getPieChartData = (data: number[]) => {
+export const data: Item[] = Object.entries(Screens).map(([key, value]) => ({
+    id: value,
+    image: `./assets/images/${value}.png`,
+    title: `${key} screen`
+} as Item));
+
+// export const data: Item[] = [{id: Screens.Home, title: `${Screens.Home} screen`,image: require(`./assets/images/home.png`)}]
+
+export const screenWidth = Dimensions.get('window').width;
+
+export type RootStackParamList = {
+    [Screens.Home]: undefined;
+    [Screens.Earth]: Item;
+    [Screens.Moon]: Item;
+    [Screens.Mars]: Item;
+    [Screens.Sun]: Item;
+    [Screens.Saturn]: Item;
+    [Screens.Uranus]: Item;
+    [Screens.Mercury]: Item;
+    [Screens.Neptune]: Item;
+    [Screens.TON618]: Item;
+    [Screens.MuchMore]: Item;
+};
+
+export const getPieChartData = (data: number[]) => {
     return data.map((item, index) => {
         const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16)
 
         return {
             key: index,
             value: item,
-            svg: { fill: randomColor },
+            svg: {fill: randomColor},
         }
     })
 }

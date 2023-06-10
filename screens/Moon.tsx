@@ -1,25 +1,25 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { PieChart} from 'react-native-svg-charts'
-import { getPieChartData } from '/Users/larsdebruijn/CelestialExplorer/utilities'
+import {StyleSheet, Text, View} from 'react-native';
+import {PieChart} from 'react-native-svg-charts'
+import {getPieChartData} from '../utilities'
 
 export const PieChartComponent = () => {
-    const data10 = [40, 83, 60, 30, 75, 90, 27, 52]
-    const pieChartData = getPieChartData(data10)
+  const data10 = [40, 83, 60, 30, 75, 90, 27, 52]
+  const pieChartData = getPieChartData(data10)
 
-    return (
-        <PieChart
-            style={{ width: 200, height: 200 }}
-            data={pieChartData}
-        />
-    )
+  return (
+      <PieChart
+          style={{width: 200, height: 200}}
+          data={pieChartData}
+      />
+  )
 }
 
 const Moon = () => (
-  <View style={styles.background}>
-    <Text style={styles.text}>Moon</Text>
-    
-  </View>
+    <View style={styles.background}>
+      <Text style={styles.text}>Moon</Text>
+
+    </View>
 );
 
 const styles = StyleSheet.create({

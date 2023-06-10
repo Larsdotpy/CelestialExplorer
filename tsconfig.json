@@ -1,14 +1,14 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
-  
+
   "compilerOptions": {
     "types": [
-      "node",
-        // Other type declarations, if any
+      "node"
+      // Other type declarations, if any
     ],
-      // Other compiler options...
-  },
+    // Other compiler options...
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true
+  }
     // Other configuration options...
-  
-  
 }

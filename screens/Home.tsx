@@ -2,14 +2,13 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Image, Text, StyleSheet, Dimensions, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import 'react-native-gesture-handler';
-import {Screens, data } from '/Users/larsdebruijn/CelestialExplorer/utilities';
-import { Screen } from 'react-native-screens';
+import {Screens, data } from '../utilities';
 
 export const Home = () => {
   const navigation = useNavigation();
   const handleImagePress = (itemId) => {
     let screenName = '';
-  
+
     switch (itemId) {
       case '1':
         screenName = Screens.Earth;
@@ -45,10 +44,10 @@ export const Home = () => {
         screenName = Screens.Home; // The default screen name if no matching ID is found
         break;
     }
-  
+
     navigation.navigate(screenName);
   };
-  
+
 
   //Onderstaande error kan worden genegeerd
   const renderItem = ({ item }) => (

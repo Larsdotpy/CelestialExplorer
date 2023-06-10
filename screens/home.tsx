@@ -7,7 +7,7 @@ import { Screen } from 'react-native-screens';
 
 export const Home = () => {
   const navigation = useNavigation();
-  const handleImagePress = (itemId) => {
+  const handleImagePress = (itemId: any) => {
     let screenName = '';
   
     switch (itemId) {

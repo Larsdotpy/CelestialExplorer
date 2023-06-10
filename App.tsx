@@ -1,19 +1,9 @@
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {
-  View,
-  Image,
-  ScrollView,
-  Text,
-  StyleSheet,
-  Dimensions,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
 import 'react-native-gesture-handler';
-import { Home } from './screens/home';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Screens } from './utilities';
+import {Home} from './screens/Home';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {RootStackParamList, Screens} from './utilities';
 import Earth from './screens/Earth';
 import Moon from './screens/Moon';
 import Mars from './screens/Mars';
@@ -25,14 +15,14 @@ import Neptune from './screens/Neptune';
 import TON618 from './screens/TON618';
 import MuchMore from './screens/MuchMore';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen options={{headerShown: false}}  name={Screens.Home} component={Home} />
-        <Stack.Screen  name={Screens.Earth} component={Earth} />
+        <Stack.Screen options={{headerShown: false}} name={Screens.Home} component={Home}/>
+        <Stack.Screen name={Screens.Earth} component={Earth}/>
         <Stack.Screen  name={Screens.Moon} component={Moon} />
         <Stack.Screen  name={Screens.Mars} component={Mars} />
         <Stack.Screen  name={Screens.Sun} component={Sun} />

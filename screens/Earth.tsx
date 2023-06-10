@@ -1,10 +1,10 @@
-import { Text, View } from "react-native";
+import {Text, View} from "react-native";
+import React from "react";
 
-const Earth = () => (
-    <View>
-        <Text>Earth screen</Text>
-    </View>
-)
+const Earth = ({route, navigation}) => {
+    const {item} = route.params;
+    return (<View><Text>{item.title}</Text></View>)
+}
 
 export default Earth;
 

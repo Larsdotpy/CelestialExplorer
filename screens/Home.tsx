@@ -1,93 +1,58 @@
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import { View, Image, Text, StyleSheet, Dimensions, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import {FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import 'react-native-gesture-handler';
-import {Screens, data } from '../utilities';
+import {data, Item, RootStackParamList, Screens} from '../utilities'
+import {StackNavigationProp} from "@react-navigation/stack";
+
+const home = require("../assets/images/mainlogo.png");
+const earth = require("../assets/images/earth.png");
+const mars = require("../assets/images/mars.png");
+const mercury = require("../assets/images/mercury.png");
+const sun = require("../assets/images/earth.png");
+const ton618 = require("../assets/images/ton618.png");
+const muchMore = require("../assets/images/astronaut.png");
+const saturn = require("../assets/images/saturn.png");
+const neptune = require("../assets/images/neptune.png");
+const uranus = require("../assets/images/uranus.png");
+
+const images = {
+  [Screens.Home]: home,
+  [Screens.Earth]: earth,
+  [Screens.Mars]: mars,
+  [Screens.Mercury]: mercury,
+  [Screens.MuchMore]: muchMore,
+  [Screens.TON618]: ton618,
+  [Screens.Sun]: sun,
+  [Screens.Saturn]: saturn,
+  [Screens.Neptune]: neptune,
+  [Screens.Uranus]: uranus,
+}
 
 export const Home = () => {
-  const navigation = useNavigation();
-  const handleImagePress = (itemId) => {
-    let screenName = '';
 
-    switch (itemId) {
-      case '1':
-        screenName = Screens.Earth;
-        break;
-      case '2':
-        screenName = Screens.Moon;
-        break;
-      case '3':
-        screenName = Screens.Mars;
-        break;
-      case '4':
-        screenName = Screens.Sun;
-        break;
-      case '5':
-        screenName = Screens.Saturn;
-        break;
-      case '6':
-        screenName = Screens.Uranus;
-        break;
-      case '7':
-        screenName = Screens.Mercury;
-        break;
-      case '8':
-      screenName = Screens.Neptune;
-        break;
-      case '9':
-        screenName = Screens.TON618;
-        break;
-      case '10':
-        screenName = Screens.MuchMore;
-        break;
-      default:
-        screenName = Screens.Home; // The default screen name if no matching ID is found
-        break;
-    }
-
-    navigation.navigate(screenName);
-  };
-
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  // @ts-ignore: Dit is altijd gezeik
+  const handleImagePress = (item: Item) => navigation.navigate(item.id, {item});
 
   //Onderstaande error kan worden genegeerd
-  const renderItem = ({ item }) => (
-    <TouchableOpacity key={item.id} style={styles.itemContainer} onPress={() => handleImagePress(item.id)} >
-      <Image source={item.image} style={styles.image} />
-      <Text style={styles.imageText}>
-        {item.id === '1'
-          ? 'Earth'
-          : item.id === '2'
-          ? 'Moon'
-          : item.id === '3'
-          ? 'Mars'
-          : item.id === '4'
-          ? 'Sun'
-          : item.id === '5'
-          ? 'Saturn'
-          : item.id === '6'
-          ? 'Uranus'
-          : item.id === '7'
-          ? 'Mercury'
-          : item.id === '8'
-          ? 'Neptune'
-          : item.id === '9'
-          ? 'TON 618'
-          : item.id === '10'
-          ? 'and much more...'
-          : ''}
-      </Text>
-    </TouchableOpacity>
+  const renderItem = (item, index) => (
+      <TouchableOpacity key={item.id} style={styles.itemContainer} onPress={() => handleImagePress(item)}>
+        <Image source={images[item.id]} style={styles.image}/>
+        <Text style={styles.imageText}>{item.id}</Text>
+      </TouchableOpacity>
   );
 
   return (
-    <View style={styles.background}>
-      <TextInput style={styles.searchBar} placeholder="What are you looking for?" placeholderTextColor="black"/>
-      <FlatList
-        contentContainerStyle={styles.container}
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
+      <View style={styles.background}>
+        <TextInput style={styles.searchBar} placeholder="What are you looking for?" placeholderTextColor="black"/>
+        <FlatList
+            <Item>
+            contentContainerStyle={styles.container}
+            data={data}
+            renderItem={({item, index}) => renderItem(item, index)}
+            keyExtractor={({id}) => id}
+        />
     </View>
   );
 };

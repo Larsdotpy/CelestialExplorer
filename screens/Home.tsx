@@ -47,12 +47,12 @@ export const Home = () => {
       <View style={styles.background}>
         <TextInput style={styles.searchBar} placeholder="What are you looking for?" placeholderTextColor="black"/>
         <FlatList
-            <Item>
-            contentContainerStyle={styles.container}
-            data={data}
-            renderItem={({item, index}) => renderItem(item, index)}
-            keyExtractor={({id}) => id}
-        />
+  contentContainerStyle={styles.container}
+  data={data}
+  renderItem={({ item, index }) => renderItem(item, index)}
+  keyExtractor={({ id }) => id}
+/>
+
     </View>
   );
 };

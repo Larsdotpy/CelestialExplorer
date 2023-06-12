@@ -1,4 +1,4 @@
-import { Dimensions } from "react-native";
+import { Dimensions, StyleSheet, View, ViewStyle } from "react-native";
 
 export enum Screens {
   Home = "Home",
@@ -99,16 +99,4 @@ export type RootStackParamList = {
   [Screens.Neptune]: Item;
   [Screens.TON618]: Item;
   [Screens.MuchMore]: Item;
-};
-
-export const getPieChartData = (data: number[]) => {
-  return data.map((item, index) => {
-    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-
-    return {
-      key: index,
-      value: item,
-      svg: { fill: randomColor },
-    };
-  });
 };

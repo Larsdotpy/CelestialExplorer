@@ -1,65 +1,57 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {PieChart} from 'react-native-svg-charts'
-import {getPieChartData} from '../utilities'
+import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
+import {
+  LineChart,
+  BarChart,
+  PieChart,
+  ProgressChart,
+  ContributionGraph,
+  StackedBarChart
+} from "react-native-chart-kit";
 
-export const PieChartComponent = () => {
-  const data10 = [40, 83, 60, 30, 75, 90, 27, 52]
-  const pieChartData = getPieChartData(data10)
+// each value represents a goal ring in Progress chart
+const data = {
+  labels: ["Water", "Hydrogen", "Oxygen"], // optional
+  data: [0.4, 0.6, 0.8]
+};
 
-  return (
-      <PieChart
-          style={{width: 200, height: 200}}
-          data={pieChartData}
-      />
-  )
-}
+const chartConfig = {
+  backgroundGradientFrom: "#171717",
+  backgroundGradientFromOpacity: 0,
+  backgroundGradientTo: "#171717",
+  backgroundGradientToOpacity: 0.5,
+  color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+  strokeWidth: 2, // optional, default 3
+  barPercentage: 0.5,
+  useShadowColorFromDataset: false // optional
+};
 
 const Moon = () => (
-    <View style={styles.background}>
-      <Text style={styles.text}>Moon</Text>
-
-    </View>
+  <View style={styles.container}>
+    <Text style={styles.text}>Moon</Text>
+    <ProgressChart
+      data={data}
+      width={Dimensions.get("window").width} // from react-native
+      height={220}
+      strokeWidth={16}
+      radius={32}
+      chartConfig={chartConfig} // Pass the chartConfig object separately
+      hideLegend={false}
+    />
+  </View>
 );
 
 const styles = StyleSheet.create({
-  background: {
+  container: {
     flex: 1,
     backgroundColor: '#171717',
   },
   text: {
     color: 'white',
-    fontSize: 30,
-    fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: 30
-  },
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  item: {
-    width: '48%',
-    alignItems: 'center',
-    marginTop: 20,
-  },
-  circle: {
-    width: 130,
-    height: 130,
-  },
-  image: {
-    width: 100,
-    height: 100,
-    marginTop: 10,
-  },
-  percentage: {
-    marginTop: 10,
-    fontSize: 16,
-    color: 'white',
-    fontWeight: 'bold'
-  },
+    fontWeight: 'bold',
+    fontSize: 30
+  }
 });
 
 export default Moon;

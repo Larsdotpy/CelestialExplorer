@@ -1,4 +1,7 @@
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Dimensions, StyleSheet, View, ViewStyle } from "react-native";
+import { Doughnut } from 'react-chartjs-2';
+
 
 export enum Screens {
   Home = "Home",

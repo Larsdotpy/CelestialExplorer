@@ -1,43 +1,48 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart
-} from "react-native-chart-kit";
+import { View, Text, StyleSheet } from 'react-native';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
 
-// each value represents a goal ring in Progress chart
-const data = {
-  labels: ["Water", "Hydrogen", "Oxygen"], // optional
-  data: [0.4, 0.6, 0.8]
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+export const dataPlanets = {
+  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  datasets: [
+    {
+      label: 'test',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+      ],
+      borderWidth: 1,
+    },
+  ],
 };
 
-const chartConfig = {
-  backgroundGradientFrom: "#171717",
-  backgroundGradientFromOpacity: 0,
-  backgroundGradientTo: "#171717",
-  backgroundGradientToOpacity: 0.5,
-  color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-  strokeWidth: 2, // optional, default 3
-  barPercentage: 0.5,
-  useShadowColorFromDataset: false // optional
-};
+const options = {
+  
+}
 
 const Earth = () => (
   <View style={styles.container}>
     <Text style={styles.text}>Earth</Text>
-    <ProgressChart
-      data={data}
-      width={Dimensions.get("window").width} // from react-native
-      height={220}
-      strokeWidth={16}
-      radius={32}
-      chartConfig={chartConfig} // Pass the chartConfig object separately
-      hideLegend={false}
-    />
+    <Doughnut 
+        data={dataPlanets}
+        options={options}
+    ></Doughnut>
   </View>
 );
 
@@ -55,25 +60,3 @@ const styles = StyleSheet.create({
 });
 
 export default Earth;
-
-
-/*
-
-Bovenaan de pagina moet de naam van de planeet/ster komen te staan, bijvoorbeeld: EARTH
-
-en dan:
-
-Het idee is om op het earth screen een soort cirkeldiagram te krijgen met daarin de hoeveel percentage:
-- Zuurstof
-- Water
-- Koolstof etc.
-
-Voor iedere planeet dezelfde vaste elementen. Dit is leuker dan enkel blanco tekst oplezen.
-
-Eventueel voor andere dingen zoals zwaartekracht, massa etc. nog iets leuks bedenken zodat dit ook visueel wordt
-en niet weer enkel blanco tekst. Dat is saai.
-
-
-
-
-*/
